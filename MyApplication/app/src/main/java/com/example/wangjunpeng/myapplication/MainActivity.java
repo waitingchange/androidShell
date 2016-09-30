@@ -1,6 +1,7 @@
 package com.example.wangjunpeng.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,10 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+
 import dalvik.system.DexClassLoader;
+
+import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         lab = (TextView) findViewById(R.id.textView);
         lab.setText("aaaaa");
@@ -51,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    public void update(View view) {
+        //启动服务
+        Intent service = new Intent(this,UpdateService.class);
+        startService(service);
     }
 
     public void LoadAPK(Bundle paramBundle, String dexpath, String dexoutputpath) {
